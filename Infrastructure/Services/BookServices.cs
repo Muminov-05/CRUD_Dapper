@@ -14,13 +14,6 @@ namespace Infrastructure.Services
     {
         private string connect = "Host=localhost;Port=5432;Database=MGU; Username=postgres; Password=AMIRJON2005";
 
-
-        public List<Books> GetBooks()
-        {
-            using var connected = new NpgsqlConnection(connect);
-            return connected.Query<Books>("select * from  Books").ToList();
-        }
-
         public void AddBook(Books book)
         {
             using var connected = new NpgsqlConnection(connect);
@@ -32,14 +25,14 @@ namespace Infrastructure.Services
         public List<Books> ReadBook()
         {
             using var connected = new NpgsqlConnection(connect);
-            List<Books> books = connected.Query<Books>("SELECT * FROM Books").AsList();
+            List<Books> books = connected.Query<Books>("SELECT * FROM Books").ToList();
             return books;
         }
-
+          
         public void UpdateBook(Books book)
         {
             using var connected = new NpgsqlConnection(connect);
-            connected.Execute(@"Update Books set title=@title,Author=@author,Isbn=@Isbn,Genre=@Genre,Date_of_print=@Date_of_print,Dostup=@Dostup
+            connected.Execute(@"Update Books set title=@title,Author=@author,Isbn=@Isbn,Genre=@ Genre,Date_of_print=@Date_of_print,Dostup=@Dostup
                                 where Id=@Id", book);
         }
 
