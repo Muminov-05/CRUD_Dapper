@@ -29,20 +29,20 @@ namespace Infrastructure.Services
             Console.WriteLine("Значение добавлены");
         }
 
-        /*public List<Books> ReadBook()
+        public List<Books> ReadBook()
         {
             using var connected = new NpgsqlConnection(connect);
             List<Books> books = connected.Query<Books>("SELECT * FROM Books").AsList();
             return books;
-        }*/
-        public List<Books> ReadBook()
-        {
-            using var connected = new NpgsqlConnection(connect);
-            connected.Open();
-            // Все имена столбцов совпадают с именами свойств — можно просто SELECT *
-            var books = connected.Query<Books>("SELECT * FROM Books").ToList();
-            return books;
         }
+        //public List<Books> ReadBook()
+        //{
+        //    using var connected = new NpgsqlConnection(connect);
+        //    connected.Open();
+        //    // Все имена столбцов совпадают с именами свойств — можно просто SELECT *
+        //    var books = connected.Query<Books>("SELECT * FROM Books").ToList();
+        //    return books;
+        //}
 
         public void UpdateBook(Books book)
         {
